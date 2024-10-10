@@ -7,6 +7,7 @@ import {
 	StyleProp,
 	ScrollViewProps,
 	ListRenderItemInfo,
+	FlatList, ScrollView,
 } from 'react-native';
 import {
 	LongPressGestureHandlerStateChangeEvent,
@@ -591,6 +592,8 @@ export interface DraxProviderProps {
 export interface DraxSubproviderProps {
 	/** Drax parent view for all views under this subprovider, when nesting */
 	parent: DraxParentView;
+	/** Children of the subprovider */
+	children?: ReactNode;
 }
 
 /** Methods provided by a DraxView when registered externally */
@@ -870,4 +873,14 @@ export interface DraxListProps<TItem> extends Omit<FlatListProps<TItem>, 'render
 
 	/** Function that receives an item and returns a list of DraxViewProps to apply to that item's DraxView */
 	viewPropsExtractor?: (item: TItem) => Partial<DraxViewProps>;
+
+	mainListScrollRef?: RefObject<FlatList>;
+
+	firstColumnScrollRef?: RefObject<FlatList>;
+
+	lastColumnScrollRef?: RefObject<FlatList>;
+
+	parentScrollRef?: RefObject<ScrollView>;
+
+	scrollPositionRef?: RefObject<Position>;
 }
